@@ -3,7 +3,7 @@
 
 (use-modules (gnu) (gnu system nss))
 (use-service-modules ssh networking desktop)
-(use-package-modules xfce ssh ratpoison certs wm lsh)
+(use-package-modules haskell xfce ssh ratpoison certs wm lsh)
 
 (operating-system
   (host-name "antelope")
@@ -37,12 +37,15 @@
                 (home-directory "/home/paul"))
                %base-user-accounts))
 
-  ;; Add Xfce and Ratpoison; that allows us to choose
-  ;; sessions using either of these at the log-in screen.
-  (packages (cons* xfce ratpoison    ;desktop environments
+  (packages (cons* xfce 	     ;desktop environments
                    nss-certs         ;for HTTPS access
-		openssh	xmonad
-                   %base-packages))
+		   xmobar
+		   openssh
+		   ghc
+		   xmonad
+		   ghc-network
+		   ghc-xmonad-contrib
+		   %base-packages))
 
   ;; Use the "desktop" services, which include the X11
   ;; log-in service, networking with Wicd, and more.
